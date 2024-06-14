@@ -14,6 +14,7 @@ function globalHandler (evt) {
   }
 
   const target = evt.target
+  const composedPath = evt.composedPath()
 
   if (
     target === void 0
@@ -53,12 +54,12 @@ function globalHandler (evt) {
     if (
       (
         state.anchorEl.value === null
-        || state.anchorEl.value.contains(target) === false
+        || composedPath.includes(state.anchorEl.value) === false
       )
       && (
         target === document.body
         || (
-          state.innerRef.value !== null
+          state.innerRef.value !== null|| composedPath.includes(state.anchorEl.value) === false
           && state.innerRef.value.contains(target) === false
         )
       )
